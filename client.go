@@ -1,4 +1,4 @@
-package main
+package op-ldap-client
 
 import (
 	"crypto/tls"
@@ -91,7 +91,7 @@ func (lc *LDAPClient) GetGroupsOfUser(username string) ([]string, error) {
 	}
 	groups := []string{}
 	for _, entry := range sr.Entries {
-		grp := formatGroup(entry.DN)
+		grp := FormatGroup(entry.DN)
 		groups = append(groups, grp)
 	}
 	return groups, nil
@@ -127,7 +127,7 @@ func Reverse(s []string) {
 	}
 }
 
-func formatGroup(s string) string {
+func FormatGroup(s string) string {
 	re := regexp.MustCompile(`(,DC.*)`)
 	rDN := re.FindAllString(s, -1)[0]
 	s = strings.ReplaceAll(s, rDN, "")
