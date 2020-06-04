@@ -1,4 +1,4 @@
-package opldap
+package main
 
 import (
 	"crypto/tls"
