@@ -4,6 +4,7 @@ import (
 	"crypto/tls"
 	"fmt"
 	"log"
+	"regexp"
 	"strings"
 
 	"gopkg.in/ldap.v3"
@@ -127,7 +128,9 @@ func Reverse(s []string) {
 }
 
 func formatGroup(s string) string {
-	s = strings.ReplaceAll(s, ",DC=*", "")
+	re := regexp.MustCompile(`(,DC.*)`)
+	replaceString := re.FindAllString(s, -1)[0]
+	s = strings.ReplaceAll(s, replaceString, "")
 	s = strings.ReplaceAll(s, "CN=", "")
 	s = strings.ReplaceAll(s, "OU=", "")
 	ns := strings.Split(s, ",")
