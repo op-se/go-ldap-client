@@ -129,8 +129,8 @@ func Reverse(s []string) {
 
 func formatGroup(s string) string {
 	re := regexp.MustCompile(`(,DC.*)`)
-	replaceString := re.FindAllString(s, -1)[0]
-	s = strings.ReplaceAll(s, replaceString, "")
+	rDN := re.FindAllString(s, -1)[0]
+	s = strings.ReplaceAll(s, rDN, "")
 	s = strings.ReplaceAll(s, "CN=", "")
 	s = strings.ReplaceAll(s, "OU=", "")
 	ns := strings.Split(s, ",")
