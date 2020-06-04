@@ -1,4 +1,4 @@
-package op-ldap-client
+package opldap
 
 import (
 	"crypto/tls"
